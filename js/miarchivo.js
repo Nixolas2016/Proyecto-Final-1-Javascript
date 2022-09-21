@@ -1,4 +1,83 @@
+const productos = [
+    {nombre: "Among Us", precio: 68},
+    {nombre: "PAYDAY 2", precio: 150},
+    {nombre: "Fallout 4", precio: 800},
+    {nombre: "Grand Theft Auto V", precio: 314},
+    {nombre: "Dead by Daylight", precio: 1000},
+];
 
+let carrito = []
+
+let nombreIngresado = (prompt("Ingrese su nombre"))
+
+alert("¡Bienvenido a Nixo Games " + nombreIngresado + "!")
+
+let seleccion = prompt("¿Desea comprar alguno de nuestros juegos? (responda si o no)")
+
+while(seleccion != "si" && seleccion != "no"){
+    alert("Por favor ingrese un valor valido (si o no)")
+    seleccion = prompt("¿Va a proceder a comprar algo? (si o no)")
+}
+
+if(seleccion == "si"){
+    alert("A continuacion se muestra nuestro catalogo de juegos")
+    let todoslosProductos = productos.map(
+        (producto) => producto.nombre + " " + producto.precio + " ARS$");
+
+    alert(todoslosProductos.join(" - "))
+} else if (seleccion == "no"){
+    alert("¡Gracias por visitar Nixo Games, vuelva pronto!")
+}
+
+while(seleccion != "no"){
+    let producto = prompt("Agregue los juegos que quiera a su carrito (uno por apartado)")
+    let precio = 0
+
+    if(producto == "Among Us" || producto == "PAYDAY 2" || producto == "Fallout 4" || producto == "Grand Theft Auto V" || producto == "Dead by Daylight"){
+        switch(producto) {
+            case "Among Us":
+                precio = 68;
+                break;
+            case "PAYDAY 2":
+                precio = 150;
+                break;
+            case "Fallout 4":
+                precio = 800;
+                break;
+            case "Grand Theft Auto V":
+                precio = 314;
+                break;
+            case "Dead by Daylight":
+                precio = 1000;
+                break;
+            default:
+                break;
+        }
+    let unidades = parseInt(prompt("¿Cuantas unidades quiere llevar?"))
+
+    carrito.push({producto, unidades, precio})
+    console.log(carrito)
+    } else {
+        alert("No tenemos ese juego en estos momentos, o no esta a la venta")
+    }
+
+    seleccion = prompt("¿Desea continuar comprando?")
+
+    while(seleccion === "no"){
+        alert("¡Muchas gracias por su compra, vuelva pronto y disfrutelo/s!")
+        carrito.forEach((carritoFinal) => {
+            console.log(`producto: ${carritoFinal.producto}, unidades: ${carritoFinal.unidades}, total a pagar por producto ${carritoFinal.unidades * carritoFinal.precio}`)
+        })
+    break;
+    }
+}
+
+const total = carrito.reduce((acc, el) => acc + el.precio * el.unidades, 0)
+console.log(`El total a pagar por su/s compra/s es de: ${total}`)
+
+
+
+/*
 let nombreIngresado = (prompt("Ingrese su nombre"))
 
 
@@ -75,3 +154,4 @@ if (juegoIngresado <= 67) {
 }
 
 alert("Muchas gracias por comprar en Nixo Games, esperamos volver a verlo/a pronto")
+*/
